@@ -34,7 +34,8 @@ def cache_data(method: Callable) -> Callable:
 @cache_data
 def get_page(url: str) -> str:
     """
-    This function returns the content of a URL. It caches the response of the request
+    This function returns the content of a URL.
+    It caches the response of the request
     and keeps track of the request count.
     """
     return requests.get(url).text
