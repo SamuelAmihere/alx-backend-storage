@@ -2,20 +2,21 @@
 """
 Writing strings to Redis:
 """
+
 import redis
 from typing import Union
 import uuid
 
 
 class Cache:
-    """
-    Cache class
-    """
-    def __init__(self) -> None:
-        self._redis = redis.Redis()
-        self._redis.flushdb(True)
+    def __init__(self, host='localhost', port=6379, db=0) -> None:
+        """
+        Constructor
+        """
+        self._redis = redis.Redis(host=host, port=port, db=db)
+        self._redis.flushdb()
 
-    def store(self, data: Union[str, int, bytes,  float]) -> str:
+    def store(self, data: Union[str, bytes, int, float]) -> str:
         """
         store method
         """
