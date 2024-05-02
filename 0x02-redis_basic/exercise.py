@@ -52,14 +52,14 @@ def replay(method: Callable) -> None:
     Displays the history of calls of a 'method'
     """
     key = method.__qualname__
-    redis = redis.Redis()
+    redis = method.__self__._redis
     count = redis.get(key)
     inputs = redis.lrange(f"{key}:inputs", 0, -1)
     outputs = redis.lrange(f"{key}:outputs", 0, -1)
 
     print(f"{key} was called {count.decode('utf-8')} times:")
-    for inp, outp in zip(inputs, outputs):
-        print(f"{key}(*{inp.decode('utf-8')}) -> {outp.decode('utf-8')}")
+    for inp, output in zip(inputs, outputs):
+        print(f"{key}(*{inp.decode('utf-8')}) -> {output.decode('utf-8')}")
 
 
 class Cache:
