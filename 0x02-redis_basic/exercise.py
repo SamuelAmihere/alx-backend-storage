@@ -50,7 +50,9 @@ class Cache:
         """
         get_int method
         """
+        v = self._redis.get(key)
         try:
-            return int(self._redis.get(key).decode("utf-8"))
-        except Exception:
+            v = int(v.decode("utf-8"))
+        except ValueError:
             return None
+        return v
