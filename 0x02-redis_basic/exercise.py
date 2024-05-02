@@ -51,6 +51,6 @@ class Cache:
         get_int method
         """
         try:
-            return int(self._redis.get(key))
+            return int(self._redis.get(key).decode("utf-8"))
         except Exception:
             return None
