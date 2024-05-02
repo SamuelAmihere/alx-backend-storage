@@ -9,7 +9,8 @@ from typing import Callable
 from functools import wraps
 
 r_store = redis.Redis()
-"""Redis Instance
+"""
+Redis Instance
 """
 
 
