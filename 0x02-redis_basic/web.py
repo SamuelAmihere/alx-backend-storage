@@ -19,8 +19,9 @@ def cache_data(method: Callable) -> Callable:
     """
     @wraps(method)
     def cache_handler(url) -> str:
-        '''This function handles the caching of the output.
-        '''
+        """
+        This function handles the caching of the output.
+        """
         r_store.incr(f'count:{url}')
         cached_result = r_store.get(f'result:{url}')
         if cached_result:
