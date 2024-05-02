@@ -58,8 +58,8 @@ def replay(method: Callable) -> None:
     outputs = redis.lrange(f"{key}:outputs", 0, -1)
 
     print(f"{key} was called {count.decode('utf-8')} times:")
-    for input, output in zip(inputs, outputs):
-        print(f"{key}(*{input.decode('utf-8')}) -> {output.decode('utf-8')}")
+    for inp, outp in zip(inputs, outputs):
+        print(f"{key}(*{inp.decode('utf-8')}) -> {outp.decode('utf-8')}")
 
 
 class Cache:
