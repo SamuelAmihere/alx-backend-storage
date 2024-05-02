@@ -34,10 +34,11 @@ class Cache:
         """
         data = self._redis.get(key)
         if data is None:
-            return None
+            return data
         if fn:
             return fn(data)
-        return data
+        else:
+            return data
 
     def get_str(self, key: str) -> str:
         """
