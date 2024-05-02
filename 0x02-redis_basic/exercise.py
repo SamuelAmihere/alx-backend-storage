@@ -51,6 +51,8 @@ def replay(method: Callable) -> None:
     """
     Displays the history of calls of a 'method'
     """
+    if method is None or not hasattr(method, '__self__'):
+        return
     key = method.__qualname__
     redis = method.__self__._redis
     count = redis.get(key)
@@ -58,6 +60,7 @@ def replay(method: Callable) -> None:
     outputs = redis.lrange(f"{key}:outputs", 0, -1)
 
     print(f"{key} was called {count.decode('utf-8')} times:")
+
     for inp, output in zip(inputs, outputs):
         print(f"{key}(*{inp.decode('utf-8')}) -> {output.decode('utf-8')}")
 
