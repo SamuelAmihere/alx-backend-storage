@@ -27,7 +27,7 @@ class Cache:
     def get(
             self,
             key: str,
-            fn: Optional[callable]=None
+            fn: Optional[callable] = None
             ) -> Union[str, bytes, int, float]:
         """
         get method
