@@ -52,7 +52,7 @@ def replay(method: Callable) -> None:
     Displays the history of calls of a 'method'
     """
     key = method.__qualname__
-    redis = method.__self__._redis
+    redis = redis.Redis()
     count = redis.get(key)
     inputs = redis.lrange(f"{key}:inputs", 0, -1)
     outputs = redis.lrange(f"{key}:outputs", 0, -1)
