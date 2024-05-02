@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-implement a get_page function (prototype: def get_page(url: str) -> str:).
+implement a get_page function.
 
 """
 import redis
