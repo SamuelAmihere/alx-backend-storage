@@ -18,7 +18,7 @@ def cache_data(method: Callable) -> Callable:
     This decorator caches the output of data retrieval methods.
     """
     @wraps(method)
-    def cache_handler(url: str) -> str:
+    def cache_handler(url) -> str:
         '''This function handles the caching of the output.
         '''
         r_store.incr(f'count:{url}')
@@ -36,7 +36,5 @@ def cache_data(method: Callable) -> Callable:
 def get_page(url: str) -> str:
     """
     This function returns the content of a URL.
-    It caches the response of the request
-    and keeps track of the request count.
     """
     return requests.get(url).text
