@@ -25,6 +25,7 @@ def count_calls(method: Callable) -> Callable:
 
     return wrapper
 
+
 def call_history(method: Callable) -> Callable:
     """
     call_history method to store the history of inputs and
@@ -44,6 +45,7 @@ def call_history(method: Callable) -> Callable:
         return output
 
     return wrapper
+
 
 def replay(method: Callable) -> None:
     """
