@@ -4,7 +4,7 @@ Writing strings to Redis:
 """
 
 import redis
-from typing import Union
+from typing import Union, Optional, Callable
 import uuid
 
 
