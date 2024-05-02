@@ -38,13 +38,13 @@ class Cache:
         if fn is not None:
             return fn(data)
         return data
-    
+
     def get_str(self, key: str) -> str:
         """
         get_str method
         """
-        return self._redis.get(key, fn=lambda d: d.decode("utf-8"))
-    
+        return self._redis.get(key, fn=lambda v: v.decode("utf-8"))
+
     def get_int(self, key: str) -> int:
         """
         get_int method
