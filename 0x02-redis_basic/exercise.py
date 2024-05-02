@@ -52,5 +52,5 @@ class Cache:
         """
         try:
             return int(self._redis.get(key))
-        except ValueError:
+        except Exception:
             return None
