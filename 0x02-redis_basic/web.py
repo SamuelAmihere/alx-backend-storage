@@ -8,7 +8,7 @@ import requests
 from typing import Callable
 from functools import wraps
 
-r_store = redis.Redis()
+redis_store = redis.Redis()
 """Redis Instance
 """
 
@@ -21,13 +21,13 @@ def cache_data(method: Callable) -> Callable:
     def cache_handler(url) -> str:
         '''This function handles the caching of the output.
         '''
-        r_store.incr(f'count:{url}')
-        cached_result = r_store.get(f'result:{url}')
+        redis_store.incr(f'count:{url}')
+        cached_result = redis_store.get(f'result:{url}')
         if cached_result:
             return cached_result.decode('utf-8')
         result = method(url)
-        r_store.set(f'count:{url}', 0)
-        r_store.setex(f'result:{url}', 10, result)
+        redis_store.set(f'count:{url}', 0)
+        redis_store.setex(f'result:{url}', 10, result)
         return result
     return cache_handler
 
