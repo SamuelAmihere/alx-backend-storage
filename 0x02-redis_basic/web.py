@@ -10,6 +10,7 @@ from functools import wraps
 
 
 r_store = redis.Redis()
+"""Redis Instance"""
 
 
 def cache_data(method: Callable) -> Callable:
